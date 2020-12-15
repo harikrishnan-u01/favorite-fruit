@@ -1,0 +1,57 @@
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  background: #f1f1f1;
+}
+
+a {
+  color: #ff655d;
+}
+
+a:hover,
+a:active {
+  color: #f44336;
+}
+
+/* Component CSS */
+
+.app {
+  display: flex;
+  flex-direction: row;
+}
+
+.list {
+  width: 200px;
+}
+
+.list li {
+  margin-bottom: 10px;
+  cursor: pointer; 
+}
+
+.list li:hover {
+  background-color: lightgrey;
+  border-radius: 5px;
+}
+
+.list-contents{
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+
+.form {  
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.form-input {
+  margin-bottom: 10px;
+  border-radius: 6px;
+  height: 30px;
+  border-color: skyblue;
+}
+
+.form-button {
+  background-color: steelblue;
+}
