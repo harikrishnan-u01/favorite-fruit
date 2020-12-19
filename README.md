@@ -14,3 +14,6 @@ list of people in the store, for you to use.
 ## Get Started
 
 First run `npm install` then then run `npm start` to get started.
+
+
+## Testing the commit from local
