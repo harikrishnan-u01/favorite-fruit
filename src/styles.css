@@ -1,5 +1,5 @@
 body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   background: #f1f1f1;
 }
 
@@ -17,15 +17,17 @@ a:active {
 .app {
   display: flex;
   flex-direction: row;
+  margin: 3rem;
 }
 
 .list {
-  width: 200px;
+  border: 1px solid black;
+  padding-top: 3rem;
 }
 
 .list li {
   margin-bottom: 10px;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .list li:hover {
@@ -33,16 +35,33 @@ a:active {
   border-radius: 5px;
 }
 
-.list-contents{
-  max-height: 80vh;
+.list-contents {
+  max-height: 70vh;
   overflow-y: scroll;
+  width: 200px;
 }
 
-.form {  
+.fruit-filter {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.form {
+  border: 1px solid black;
+  border-left: none;
+  padding: 3rem;
+  width: 100%;
+}
+
+.form-container {
   display: flex;
-  flex-direction: column;
-  margin-left: 20px;
-  margin-top: 20px;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.form-container label {
+  display: block;
 }
 
 .form-input {
@@ -50,6 +69,11 @@ a:active {
   border-radius: 6px;
   height: 30px;
   border-color: skyblue;
+  width: 50%;
+}
+
+.form-input-container {
+  width: 100%;
 }
 
 .form-button {

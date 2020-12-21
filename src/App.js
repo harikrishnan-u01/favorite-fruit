@@ -1,12 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import * as selectors from './store/selectors';
+import * as selectors from "./store/selectors";
 
-import PeopleList from './components/PeopleList';
-import PersonForm from './components/PersonForm';
+import PeopleList from "./components/PeopleList";
+import PersonForm from "./components/PersonForm";
 
-import './styles.css';
+import "./styles.css";
 
 class App extends React.PureComponent {
   render() {
@@ -14,14 +14,14 @@ class App extends React.PureComponent {
       <div>
         <div className="app">
           <PeopleList />
-          <PersonForm key={this.props.activeId || 'BLANK'} />
+          <PersonForm key={this.props.activeId || "BLANK"} />
         </div>
       </div>
     );
   }
 }
 
-export const mapStateToProps = state => {
+export const mapStateToProps = (state) => {
   return {
     activeId: selectors.selectActiveId(state),
   };
