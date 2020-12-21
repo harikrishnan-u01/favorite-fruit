@@ -25,13 +25,17 @@ class PeopleList extends React.Component {
 
     return (
       <div className="list">
+        <label htmlFor="fruit-filter" className="fruit-filter">
+          Fruit Filter:
+        </label>
         <Select
+          id="fruit-filter"
           className="fruit-filter"
           label="Favorite Fruit"
           defaultValue={this.selectOptions[0]}
           options={this.selectOptions}
           onChange={(e) => {
-            console.log("selected target", e.value);
+            // console.log("selected target", e.value);
             this.props.filter(e.value);
           }}
         />
@@ -39,7 +43,7 @@ class PeopleList extends React.Component {
         <div className="list-contents">
           <ul
             onClick={(e) => {
-              console.log("Clicked LI", e.target.id);
+              // console.log("Clicked LI", e.target.id);
               if (e.target.id) {
                 this.props.setActiveId(e.target.id);
               }

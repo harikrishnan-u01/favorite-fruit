@@ -1,12 +1,12 @@
-import { map } from 'lodash';
-import find from 'lodash/find';
-import people from '../data/people.json';
-import * as types from './types';
+// import { map } from 'lodash';
+import find from "lodash/find";
+import people from "../data/people.json";
+import * as types from "./types";
 
 const initialState = {
   people,
   activeId: null,
-  filterValue: 'ALL',
+  filterValue: "ALL",
 };
 
 function addReducer(state = initialState, { type, payload }) {
@@ -21,7 +21,7 @@ function addReducer(state = initialState, { type, payload }) {
     }
     case types.FILTER_PEOPLE: {
       const filterValue = payload.filterValue;
-      console.log("filterValue-----",filterValue);
+      console.log("filterValue-----", filterValue);
       return {
         ...state,
         filterValue,
@@ -34,11 +34,16 @@ function addReducer(state = initialState, { type, payload }) {
       // Save data for active person
       console.log("data---", data);
 
-      const updated = find(state.people, { id: activeId })
-      updated.name.first = data.first ?  data.first : updated.name.first;
-      updated.name.last = data.last ? data.last : updated.name.last;
-      updated.age = data.age ? data.age : updated.age ;
-      updated.favoriteFruit = data.favoriteFruit ? data.favoriteFruit : updated.favoriteFruit;
+      let updated = find(state.people, { id: activeId });
+
+      if (!updated) {
+        updated = { name: {} };
+      }
+
+      updated.name.first = data.firstName;
+      updated.name.last = data.lastName;
+      updated.age = data.age;
+      updated.favoriteFruit = data.favoriteFruit;
 
       return {
         ...state,

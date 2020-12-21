@@ -78,4 +78,6 @@ a:active {
 
 .form-button {
   background-color: steelblue;
+  cursor: pointer;
+  border-radius: 1rem;
 }

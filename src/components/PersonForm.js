@@ -4,71 +4,83 @@ import { connect } from "react-redux";
 import * as selectors from "../store/selectors";
 import * as actions from "../store/actions";
 
-import { isEmpty } from "lodash";
+import { isEmpty, get, debounce } from "lodash";
 
 class PersonForm extends React.Component {
-  data = {};
+  state = {
+    firstName: get(this.props.person, "name.first", ""),
+    lastName: get(this.props.person, "name.last", ""),
+    age: get(this.props.person, "age", ""),
+    favoriteFruit: get(this.props.person, "favoriteFruit", ""),
+  };
   render() {
-    const { person } = this.props;
-
+    // const { person } = this.props;
     // console.log("ACTIVE PERSON", person);
 
     return (
       <div className="form">
-        <div class="form-container">
-          <div class="form-input-container">
-            <label for="form-first-name">First Name</label>
+        <div className="form-container">
+          <div className="form-input-container">
+            <label htmlFor="form-first-name">First Name:</label>
             <input
               id="form-first-name"
               className="form-input"
               type="text"
               placeholder="First Name"
-              defaultValue={person ? person.name.first : ""}
+              value={this.state.firstName}
               onChange={(e) => {
                 console.log("First Name changed ", e.target.value);
-                this.data.first = e.target.value;
+                this.setState({
+                  firstName: e.target.value,
+                });
               }}
             />
           </div>
-          <div class="form-input-container">
-            <label for="form-last-name">Last Name</label>
+          <div className="form-input-container">
+            <label htmlFor="form-last-name">Last Name:</label>
             <input
               id="form-last-name"
               className="form-input"
               type="text"
               placeholder="Last Name"
-              defaultValue={person ? person.name.last : ""}
+              value={this.state.lastName}
               onChange={(e) => {
                 console.log("Last Name changed ", e.target.value);
-                this.data.last = e.target.value;
+                this.setState({
+                  lastName: e.target.value,
+                });
               }}
             />
           </div>
-          <div class="form-input-container">
-            <label for="form-age">Age</label>
+          <div className="form-input-container">
+            <label htmlFor="form-age">Age:</label>
             <input
               id="form-age"
               className="form-input"
               type="number"
               placeholder="Age"
-              defaultValue={person ? person.age : 0}
+              value={this.state.age}
               onChange={(e) => {
                 console.log("Age changed ", e.target.value);
-                this.data.age = e.target.value;
+                this.setState({
+                  age: e.target.value,
+                });
               }}
             />
           </div>
-          <div class="form-input-container">
-            <label for="form-fav-fruit">Favorite Fruit</label>
+          <div className="form-input-container">
+            <label htmlFor="form-fav-fruit">Favorite Fruit:</label>
             <input
               id="form-fav-fruit"
               className="form-input"
               type="text"
               placeholder="Fav Fruit"
-              defaultValue={person ? person.favoriteFruit : ""}
+              value={this.state.favoriteFruit}
               onChange={(e) => {
                 console.log("Fruit changed ", e.target.value);
-                this.data.favoriteFruit = e.target.value;
+                this.setState({
+                  favoriteFruit: e.target.value,
+                });
               }}
             />
           </div>
@@ -79,8 +91,14 @@ class PersonForm extends React.Component {
             type="submit"
             value="Save"
             onClick={() => {
-              if (!isEmpty(this.data)) {
-                this.props.save(this.data);
+              if (!isEmpty(this.state.firstName)) {
+                this.props.save(this.state);
+                this.setState({
+                  firstName: "",
+                  lastName: "",
+                  age: "",
+                  favoriteFruit: "",
+                });
               }
             }}
           />
