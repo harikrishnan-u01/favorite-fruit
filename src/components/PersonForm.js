@@ -18,7 +18,21 @@ class PersonForm extends React.Component {
     // console.log("ACTIVE PERSON", person);
 
     return (
-      <div className="form">
+      <form
+        className="form"
+        onSubmit={(event) => {
+          if (!isEmpty(this.state.firstName)) {
+            this.props.save(this.state);
+            this.setState({
+              firstName: "",
+              lastName: "",
+              age: "",
+              favoriteFruit: "",
+            });
+          }
+          event.preventDefault();
+        }}
+      >
         <div className="form-container">
           <div className="form-input-container">
             <label htmlFor="form-first-name">First Name:</label>
@@ -90,20 +104,9 @@ class PersonForm extends React.Component {
             className="form-input form-button"
             type="submit"
             value="Save"
-            onClick={() => {
-              if (!isEmpty(this.state.firstName)) {
-                this.props.save(this.state);
-                this.setState({
-                  firstName: "",
-                  lastName: "",
-                  age: "",
-                  favoriteFruit: "",
-                });
-              }
-            }}
           />
         </div>
-      </div>
+      </form>
     );
   }
 }
